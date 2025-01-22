@@ -24,7 +24,7 @@ namespace SAMtak.AStar
             void Reset();
         }
 
-        public bool IsBusy { get;  private set; }
+        public bool IsBusy { get; private set; }
 
         readonly List<INode> _openList;
         readonly HashSet<INode> _closedList;
