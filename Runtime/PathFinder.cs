@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace SAMtak.AStar
@@ -23,6 +24,8 @@ namespace SAMtak.AStar
             void Reset();
         }
 
+        public bool IsBusy { get;  private set; }
+
         readonly List<INode> _openList;
         readonly HashSet<INode> _closedList;
 
@@ -34,6 +37,8 @@ namespace SAMtak.AStar
 
         public IEnumerable<INode> FindPath(INode startNode, INode goalNode)
         {
+            Debug.Assert(!IsBusy);
+            IsBusy = true;
             OnStartFind();
             _openList.Clear();
             _closedList.Clear();
@@ -58,6 +63,7 @@ namespace SAMtak.AStar
                         _openList.Add(currentNode);
                     }
                     _openList.Add(startNode);
+                    IsBusy = false;
                     return _openList.AsEnumerable().Reverse();
                 }
 
@@ -80,7 +86,7 @@ namespace SAMtak.AStar
 
             _openList.Clear();
             _closedList.Clear();
-
+            IsBusy = false;
             return null;
         }
 
