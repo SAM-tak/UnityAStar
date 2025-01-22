@@ -1,0 +1,10 @@
+{
+    "name": "net.sam-tak.astar",
+    "displayName": "UnityAStar",
+    "version": "0.5.0",
+    "unity": "2022.3",
+    "description": "A* algorithm for Unity",
+    "keywords": ["ai", "path finding"],
+    "category": "AI",
+    "dependencies": { }
+}
