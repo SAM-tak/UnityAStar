@@ -8,7 +8,7 @@ namespace SAMtak.AStar
     /// A* Algorithm
     /// </summary>
     /// <typeparam name="T">Cost value type</typeparam>
-    public class Algorithm<T>
+    public class PathFinder<T>
     {
         public interface INode
         {
@@ -26,7 +26,7 @@ namespace SAMtak.AStar
         readonly List<INode> _openList;
         readonly HashSet<INode> _closedList;
 
-        public Algorithm(int bufferReserveSize = 256)
+        public PathFinder(int bufferReserveSize = 256)
         {
             _openList = new(bufferReserveSize);
             _closedList = new(bufferReserveSize);

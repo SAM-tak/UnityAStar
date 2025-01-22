@@ -22,9 +22,10 @@ https://github.com/SAM-tak/UnityAStar.git#v0.5.0
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using SAMtak.AStar;
 
 // Customized path finder for your project.
-public class MyPathFinder : SAMtak.AStar.Algorithm<int> // A* algorithm with int type cost
+public class MyPathFinder : PathFinder<int> // A* algorithm path finder with int type cost
 {
     public int Width { get; private set; }
     public int Height => _nodes.Length / Width;
@@ -69,7 +70,7 @@ public class MyPathFinder : SAMtak.AStar.Algorithm<int> // A* algorithm with int
     }
 
     // Vector2IntNode is abstract class designed for has int type cost, has Vector2Int position, has manhattan distance base heuristic cost.
-    public class Node : SAMtak.AStar.Vector2IntNode
+    public class Node : Vector2IntNode
     {
         public MyPathFinder pathFinder;
 

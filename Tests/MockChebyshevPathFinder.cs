@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SAMtak.AStar.Tests
 {
-    public class MockChebyshevPathFinder : Algorithm<int>
+    public class MockChebyshevPathFinder : PathFinder<int>
     {
         public int Width { get; private set; }
         public int Height => _nodes.Length / Width;

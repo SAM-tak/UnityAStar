@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace SAMtak.AStar
 {
-    using INode = Algorithm<float>.INode;
+    using INode = PathFinder<float>.INode;
 
     public abstract class FloatCostNode : INode
     {

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace SAMtak.AStar
 {
-    using INode = Algorithm<float>.INode;
+    using INode = PathFinder<float>.INode;
 
     public abstract class Vector3Node : FloatCostNode
     {

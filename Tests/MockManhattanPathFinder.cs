@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SAMtak.AStar.Tests
 {
-    public class MockManhattanPathFinder : Algorithm<int>
+    public class MockManhattanPathFinder : PathFinder<int>
     {
         public int Width { get; private set; }
         public int Height => _nodes.Length / Width;
