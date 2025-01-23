@@ -47,7 +47,7 @@ namespace SAMtak.AStar.Tests
                 _nodes[i].Reset();
             }
         }
-     
+
         public class Node : Vector2IntNode
         {
             public MockManhattanChebyshevHybridPathFinder pathFinder;
