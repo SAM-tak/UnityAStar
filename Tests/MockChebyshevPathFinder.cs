@@ -51,10 +51,15 @@ namespace SAMtak.AStar.Tests
             public MockChebyshevPathFinder pathFinder;
             public Vector2Int position;
 
+            public override int GetHashCode()
+            {
+                return position.GetHashCode();
+            }
+
             public override int EstimateCostTo(INode other)
             {
                 var otherPosition = ((Node)other).position;
-                return Distance.Chebyshev(position, ((Node)other).position) + pathFinder.Grid[otherPosition.y, otherPosition.x];
+                return Distance.Chebyshev(position, otherPosition) + pathFinder.Grid[otherPosition.y, otherPosition.x];
             }
 
             public override IEnumerable<INode> GetNeighbors()

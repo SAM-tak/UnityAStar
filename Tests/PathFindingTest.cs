@@ -122,5 +122,76 @@ namespace SAMtak.AStar.Tests
                 new Vector2Int(5, 1),
             }));
         }
+
+        [Test]
+        public void ShouldPathPredictablyHybidManhattan()
+        {
+            var pathfinder = new MockManhattanChebyshevHybridPathFinder(_grid);
+
+            var path = pathfinder.FindPath(new Vector2Int(1, 1), new Vector2Int(3, 2), true);
+
+            // Helper.Print(_grid, path);
+
+            Assert.That(path, Is.EquivalentTo(new[] {
+                new Vector2Int(1, 1),
+                new Vector2Int(2, 1),
+                new Vector2Int(2, 2),
+                new Vector2Int(3, 2),
+            }));
+        }
+
+        [Test]
+        public void ShouldPathPredictablyHybidManhattan2()
+        {
+            var pathfinder = new MockManhattanChebyshevHybridPathFinder(_grid);
+
+            var path = pathfinder.FindPath(new Vector2Int(1, 1), new Vector2Int(5, 1), true);
+
+            // Helper.Print(_grid, path);
+
+            Assert.That(path, Is.EquivalentTo(new[] {
+                new Vector2Int(1, 1),
+                new Vector2Int(2, 1),
+                new Vector2Int(2, 2),
+                new Vector2Int(3, 2),
+                new Vector2Int(4, 2),
+                new Vector2Int(5, 2),
+                new Vector2Int(5, 1),
+            }));
+        }
+
+        [Test]
+        public void ShouldPathPredictablyHybidChebyshev()
+        {
+            var pathfinder = new MockManhattanChebyshevHybridPathFinder(_grid);
+
+            var path = pathfinder.FindPath(new Vector2Int(1, 1), new Vector2Int(3, 2), false);
+
+            // Helper.Print(_grid, path);
+
+            Assert.That(path, Is.EquivalentTo(new[] {
+                new Vector2Int(1, 1),
+                new Vector2Int(2, 1),
+                new Vector2Int(3, 2),
+            }));
+        }
+
+        [Test]
+        public void ShouldPathPredictablyHybidChebyshev2()
+        {
+            var pathfinder = new MockManhattanChebyshevHybridPathFinder(_grid);
+
+            var path = pathfinder.FindPath(new Vector2Int(1, 1), new Vector2Int(5, 1), false);
+
+            // Helper.Print(_grid, path);
+
+            Assert.That(path, Is.EquivalentTo(new[] {
+                new Vector2Int(1, 1),
+                new Vector2Int(2, 1),
+                new Vector2Int(3, 2),
+                new Vector2Int(4, 1),
+                new Vector2Int(5, 1),
+            }));
+        }
     }
 }
