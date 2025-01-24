@@ -28,15 +28,17 @@ namespace SAMtak.AStar
         }
 
         /// <inheritdoc/>
-        public void Reset(int initialCost)
+        public void Reset()
         {
-            GraphCost = initialCost;
+            GraphCost = 0;
             HeuristicCost = 0;
             Ancestor = null;
         }
 
+        /// <inheritdoc/>
         public abstract IEnumerable<INode> GetNeighbors(INode goalNode);
 
+        /// <inheritdoc/>
         public abstract int EstimateCostTo(INode other);
     }
 }

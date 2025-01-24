@@ -8,21 +8,47 @@ namespace SAMtak.AStar
     /// </summary>
     public static class GridIterator
     {
+        /// <summary>
+        /// Enumerate four direction
+        /// </summary>
+        /// <param name="current">current position</param>
+        /// <param name="goal">goal position</param>
+        /// <returns>Enumerator for four direction</returns>
         public static IEnumerable<Vector2Int> Manhattan(Vector2Int current, Vector2Int goal)
         {
             return Manhattan(Vector2Int.zero, current, goal, false);
         }
 
+        /// <summary>
+        /// Enumerate four direction
+        /// </summary>
+        /// <param name="previous">ancestor node position</param>
+        /// <param name="current">current position</param>
+        /// <param name="goal">goal position</param>
+        /// <returns>Enumerator for four direction</returns>
         public static IEnumerable<Vector2Int> Manhattan(Vector2Int previous, Vector2Int current, Vector2Int goal)
         {
             return Manhattan(previous, current, goal, true);
         }
 
+        /// <summary>
+        /// Enumerate eight direction
+        /// </summary>
+        /// <param name="previous">ancestor node position</param>
+        /// <param name="current">current position</param>
+        /// <param name="goal">goal position</param>
+        /// <returns>Enumerator for four direction</returns>
         public static IEnumerable<Vector2Int> Chebyshev(Vector2Int current, Vector2Int goal)
         {
             return Chebyshev(Vector2Int.zero, current, goal, false);
         }
 
+        /// <summary>
+        /// Enumerate eight direction
+        /// </summary>
+        /// <param name="current">current position</param>
+        /// <param name="goal">goal position</param>
+        /// <returns>Enumerator for four direction</returns>
         public static IEnumerable<Vector2Int> Chebyshev(Vector2Int previous, Vector2Int current, Vector2Int goal)
         {
             return Chebyshev(previous, current, goal, true);

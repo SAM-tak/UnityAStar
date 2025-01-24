@@ -75,26 +75,15 @@ public class MyPathFinder : PathFinder<int> // A* algorithm path finder with int
         public MyPathFinder pathFinder;
 
         // customized heuristic cost function
-        public override int EstimateCostTo(INode other)
-        {
-            var otherPosition = ((Node)other).position;
-            return base.EstimateCostTo(other) + pathFinder.Grid[otherPosition.y, otherPosition.x]; // distance + weight
-        }
+        public override int EstimateCostTo(INode other) => base.EstimateCostTo(other) + pathFinder.Grid[position.y, position.x]; // distance + weight
 
         // returns neighbors from node graph. in this case, node graph was presented with 2D array.
-        public override IEnumerable<INode> GetNeighbors()
+        public override IEnumerable<INode> GetNeighbors(INode goalNode)
         {
-            if(position.x + 1 < pathFinder.Width && pathFinder.Grid[position.y, position.x + 1] < short.MaxValue) {
-                yield return pathFinder[position + new Vector2Int(1, 0)];
-            }
-            if(position.y + 1 < pathFinder.Height && pathFinder.Grid[position.y + 1, position.x] < short.MaxValue) {
-                yield return pathFinder[position + new Vector2Int(0, 1)];
-            }
-            if(position.y > 0 && pathFinder.Grid[position.y - 1, position.x] < short.MaxValue) {
-                yield return pathFinder[position + new Vector2Int(0, -1)];
-            }
-            if(position.x > 0 && pathFinder.Grid[position.y, position.x - 1] < short.MaxValue) {
-                yield return pathFinder[position + new Vector2Int(-1, 0)];
+            foreach(var i in GridIterator.Manhattan(position, ((Node)goalNode).position)) {
+                if(0 <= i.x && i.x < pathFinder.Width && 0 <= i.y && i.y < pathFinder.Height && pathFinder.Grid[i.y, i.x] < short.MaxValue) {
+                    yield return pathFinder[i];
+                }
             }
         }
     }

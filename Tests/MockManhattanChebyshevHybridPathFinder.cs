@@ -44,7 +44,7 @@ namespace SAMtak.AStar.Tests
         protected override void OnStartFind()
         {
             for(int i = 0; i < _nodes.Length; ++i) {
-                _nodes[i].Reset(Grid[i / Width, i % Width]);
+                _nodes[i].Reset();
             }
         }
 

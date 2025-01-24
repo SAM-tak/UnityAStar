@@ -13,6 +13,7 @@ namespace SAMtak.AStar
 
         public override int GetHashCode() => position.GetHashCode();
 
+        /// <inheritdoc/>
         public override float EstimateCostTo(INode other) => Vector3.Distance(position, ((Vector3Node)other).position);
     }
 }
