@@ -55,10 +55,10 @@ namespace SAMtak.AStar.Tests
             public override int EstimateCostTo(INode other)
             {
                 if(pathFinder.IsDiagonal) {
-                    return base.EstimateCostTo(other);
+                    return base.EstimateCostTo(other) + pathFinder.Grid[position.y, position.x];
                 }
                 else {
-                    return Distance.Chebyshev(position, ((Node)other).position) + other.GraphCost;
+                    return Distance.Chebyshev(position, ((Node)other).position) + pathFinder.Grid[position.y, position.x];
                 }
             }
 

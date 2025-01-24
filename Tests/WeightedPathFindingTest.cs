@@ -64,5 +64,25 @@ namespace SAMtak.AStar.Tests
                 new Vector2Int(6, 3),
             }));
         }
+
+        [Test]
+        public void ShouldPathWithWeightChebyshev()
+        {
+            var pathfinder = new MockChebyshevPathFinder(_grid);
+
+            var path = pathfinder.FindPath(new Vector2Int(0, 0), new Vector2Int(6, 3));
+
+            Helper.Print(_grid, path);
+
+            Assert.That(path, Is.EquivalentTo(new[] {
+                new Vector2Int(0, 0),
+                new Vector2Int(1, 0),
+                new Vector2Int(2, 0),
+                new Vector2Int(3, 0),
+                new Vector2Int(4, 1),
+                new Vector2Int(5, 2),
+                new Vector2Int(6, 3),
+            }));
+        }
     }
 }

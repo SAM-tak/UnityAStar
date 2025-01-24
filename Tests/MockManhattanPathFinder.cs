@@ -50,6 +50,8 @@ namespace SAMtak.AStar.Tests
         {
             public MockManhattanPathFinder pathFinder;
 
+            public override int EstimateCostTo(INode other) => base.EstimateCostTo(other) + pathFinder.Grid[position.y, position.x];
+
             public override IEnumerable<INode> GetNeighbors(INode goalNode)
             {
                 foreach(var i in Ancestor != null

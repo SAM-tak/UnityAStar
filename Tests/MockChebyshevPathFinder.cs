@@ -53,7 +53,7 @@ namespace SAMtak.AStar.Tests
 
             public override int GetHashCode() => position.GetHashCode();
 
-            public override int EstimateCostTo(INode other) => Distance.Chebyshev(position, ((Node)other).position) + other.GraphCost;
+            public override int EstimateCostTo(INode other) => Distance.Chebyshev(position, ((Node)other).position) + pathFinder.Grid[position.y, position.x];
 
             public override IEnumerable<INode> GetNeighbors(INode goalNode)
             {
