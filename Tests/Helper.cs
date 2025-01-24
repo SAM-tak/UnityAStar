@@ -74,8 +74,11 @@ namespace SAMtak.AStar.Tests
                     if(splitLevel[row][column] == ClosedCharacter) {
                         grid[row, column] = short.MaxValue;
                     }
+                    else if(short.TryParse(splitLevel[row][column].ToString(), out var weight)) {
+                        grid[row, column] = weight;
+                    }
                     else {
-                        grid[row, column] = short.Parse(splitLevel[row][column].ToString());
+                        grid[row, column] = 0;
                     }
                 }
             }

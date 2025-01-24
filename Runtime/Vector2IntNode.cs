@@ -11,10 +11,7 @@ namespace SAMtak.AStar
     {
         public Vector2Int position;
 
-        public override int GetHashCode()
-        {
-            return position.GetHashCode();
-        }
+        public override int GetHashCode() => position.GetHashCode();
 
         public override int EstimateCostTo(INode other) => Distance.Manhattan(position, ((Vector2IntNode)other).position);
     }

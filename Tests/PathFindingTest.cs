@@ -84,7 +84,7 @@ namespace SAMtak.AStar.Tests
                 new Vector2Int(1, 1),
                 new Vector2Int(2, 1),
                 new Vector2Int(3, 2),
-                new Vector2Int(4, 1),
+                new Vector2Int(4, 2),
                 new Vector2Int(5, 1),
             }));
         }
@@ -118,7 +118,7 @@ namespace SAMtak.AStar.Tests
                 new Vector2Int(1, 1),
                 new Vector2Int(2, 1),
                 new Vector2Int(3, 2),
-                new Vector2Int(4, 1),
+                new Vector2Int(4, 2),
                 new Vector2Int(5, 1),
             }));
         }
@@ -189,7 +189,7 @@ namespace SAMtak.AStar.Tests
                 new Vector2Int(1, 1),
                 new Vector2Int(2, 1),
                 new Vector2Int(3, 2),
-                new Vector2Int(4, 1),
+                new Vector2Int(4, 2),
                 new Vector2Int(5, 1),
             }));
         }

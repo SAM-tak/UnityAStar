@@ -28,9 +28,9 @@ namespace SAMtak.AStar
         }
 
         /// <inheritdoc/>
-        public void Reset()
+        public void Reset(int initialCost)
         {
-            GraphCost = 0;
+            GraphCost = initialCost;
             HeuristicCost = 0;
             Ancestor = null;
         }

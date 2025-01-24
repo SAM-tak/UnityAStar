@@ -9,6 +9,7 @@ namespace SAMtak.AStar
     /// A* Algorithm path finder
     /// </summary>
     /// <typeparam name="T">Cost value type</typeparam>
+    /// <seealso cref="Tests.MockManhattanPathFider"/>
     public class PathFinder<T>
     {
         /// <summary>
@@ -65,9 +66,10 @@ namespace SAMtak.AStar
             bool IsMovementCostLessThanNeighborsGraphCost(INode neighbor, out T movementCost);
             /// <summary>
             /// Initialize node state.<br/>
-            /// All costs set to Zero and Ancestor set to null.
+            /// GraphCost set to initialCost, HeuristicCost set to Zero and Ancestor set to null.
             /// </summary>
-            void Reset();
+            /// <param name="initialCost">Initial graph cost</param>
+            void Reset(T initialCost);
         }
 
         /// <summary>

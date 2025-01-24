@@ -44,7 +44,7 @@ namespace SAMtak.AStar.Tests
         protected override void OnStartFind()
         {
             for(int i = 0; i < _nodes.Length; ++i) {
-                _nodes[i].Reset();
+                _nodes[i].Reset(Grid[i / Width, i % Width]);
             }
         }
 
@@ -66,43 +66,55 @@ namespace SAMtak.AStar.Tests
             public override IEnumerable<INode> GetNeighbors()
             {
                 if(pathFinder.IsDiagonal) {
-                    if(position.x + 1 < pathFinder.Width && pathFinder.Grid[position.y, position.x + 1] < short.MaxValue) {
-                        yield return pathFinder[position + new Vector2Int(1, 0)];
+                    var neighborPos = position + new Vector2Int(1, 0);
+                    if(neighborPos.x < pathFinder.Width && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
+                        yield return pathFinder[neighborPos];
                     }
-                    if(position.y + 1 < pathFinder.Height && pathFinder.Grid[position.y + 1, position.x] < short.MaxValue) {
-                        yield return pathFinder[position + new Vector2Int(0, 1)];
+                    neighborPos = position + new Vector2Int(0, 1);
+                    if(neighborPos.y < pathFinder.Height && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
+                        yield return pathFinder[neighborPos];
                     }
-                    if(position.y > 0 && pathFinder.Grid[position.y - 1, position.x] < short.MaxValue) {
-                        yield return pathFinder[position + new Vector2Int(0, -1)];
+                    neighborPos = position + new Vector2Int(0, -1);
+                    if(neighborPos.y > 0 && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
+                        yield return pathFinder[neighborPos];
                     }
-                    if(position.x > 0 && pathFinder.Grid[position.y, position.x - 1] < short.MaxValue) {
-                        yield return pathFinder[position + new Vector2Int(-1, 0)];
+                    neighborPos = position + new Vector2Int(-1, 0);
+                    if(neighborPos.x > 0 && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
+                        yield return pathFinder[neighborPos];
                     }
                 }
                 else {
-                    if(position.x + 1 < pathFinder.Width && pathFinder.Grid[position.y, position.x + 1] < short.MaxValue) {
-                        yield return pathFinder[position + new Vector2Int(1, 0)];
+                    var neighborPos = position + new Vector2Int(1, 0);
+                    if(neighborPos.x < pathFinder.Width && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
+                        yield return pathFinder[neighborPos];
                     }
-                    if(position.x + 1 < pathFinder.Width && position.y + 1 < pathFinder.Height && pathFinder.Grid[position.y + 1, position.x + 1] < short.MaxValue) {
-                        yield return pathFinder[position + new Vector2Int(1, 1)];
+                    neighborPos = position + new Vector2Int(1, 1);
+                    if(neighborPos.x < pathFinder.Width && neighborPos.y < pathFinder.Height && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
+                        yield return pathFinder[neighborPos];
                     }
-                    if(position.y + 1 < pathFinder.Height && pathFinder.Grid[position.y + 1, position.x] < short.MaxValue) {
-                        yield return pathFinder[position + new Vector2Int(0, 1)];
+                    neighborPos = position + new Vector2Int(0, 1);
+                    if(neighborPos.y < pathFinder.Height && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
+                        yield return pathFinder[neighborPos];
                     }
-                    if(position.x > 0 && position.y + 1 < pathFinder.Height && pathFinder.Grid[position.y + 1, position.x - 1] < short.MaxValue) {
-                        yield return pathFinder[position + new Vector2Int(-1, 1)];
+                    neighborPos = position + new Vector2Int(-1, 1);
+                    if(neighborPos.x >= 0 && neighborPos.y < pathFinder.Height && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
+                        yield return pathFinder[neighborPos];
                     }
-                    if(position.x > 0 && pathFinder.Grid[position.y, position.x - 1] < short.MaxValue) {
-                        yield return pathFinder[position + new Vector2Int(-1, 0)];
+                    neighborPos = position + new Vector2Int(-1, 0);
+                    if(neighborPos.x >= 0 && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
+                        yield return pathFinder[neighborPos];
                     }
-                    if(position.x > 0 && position.y > 0 && pathFinder.Grid[position.y - 1, position.x - 1] < short.MaxValue) {
-                        yield return pathFinder[position + new Vector2Int(-1, -1)];
+                    neighborPos = position + new Vector2Int(-1, -1);
+                    if(neighborPos.x >= 0 && neighborPos.y > 0 && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
+                        yield return pathFinder[neighborPos];
                     }
-                    if(position.y > 0 && pathFinder.Grid[position.y - 1, position.x] < short.MaxValue) {
-                        yield return pathFinder[position + new Vector2Int(0, -1)];
+                    neighborPos = position + new Vector2Int(0, -1);
+                    if(neighborPos.y >= 0 && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
+                        yield return pathFinder[neighborPos];
                     }
-                    if(position.x + 1 < pathFinder.Width && position.y > 0 && pathFinder.Grid[position.y - 1, position.x - 1] < short.MaxValue) {
-                        yield return pathFinder[position + new Vector2Int(1, -1)];
+                    neighborPos = position + new Vector2Int(1, -1);
+                    if(neighborPos.x < pathFinder.Width && position.y >= 0 && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
+                        yield return pathFinder[neighborPos];
                     }
                 }
             }
