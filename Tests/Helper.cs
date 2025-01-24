@@ -11,8 +11,8 @@ namespace SAMtak.AStar.Tests
         public static void Print(short[,] grid, Vector2Int[] path)
         {
             var sb = new StringBuilder();
-            AppendGridString(sb, grid);
-            sb.AppendLine();
+            // AppendGridString(sb, grid);
+            // sb.AppendLine();
             AppendPathString(sb, grid, path);
             // sb.AppendLine();
             // AppendAssertionsString(sb, path);
