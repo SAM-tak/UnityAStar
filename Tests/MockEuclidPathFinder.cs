@@ -48,41 +48,16 @@ namespace SAMtak.AStar.Tests
 
         public class Node : Vector2IntEuclidNode
         {
-            public MockEuclidPathFinder  pathFinder;
+            public MockEuclidPathFinder pathFinder;
 
-            public override IEnumerable<INode> GetNeighbors()
+            public override IEnumerable<INode> GetNeighbors(INode goalNode)
             {
-                var neighborPos = position + new Vector2Int(1, 0);
-                if(neighborPos.x < pathFinder.Width && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
-                    yield return pathFinder[neighborPos];
-                }
-                neighborPos = position + new Vector2Int(1, 1);
-                if(neighborPos.x < pathFinder.Width && neighborPos.y < pathFinder.Height && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
-                    yield return pathFinder[neighborPos];
-                }
-                neighborPos = position + new Vector2Int(0, 1);
-                if(neighborPos.y < pathFinder.Height && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
-                    yield return pathFinder[neighborPos];
-                }
-                neighborPos = position + new Vector2Int(-1, 1);
-                if(neighborPos.x >= 0 && neighborPos.y < pathFinder.Height && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
-                    yield return pathFinder[neighborPos];
-                }
-                neighborPos = position + new Vector2Int(-1, 0);
-                if(neighborPos.x >= 0 && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
-                    yield return pathFinder[neighborPos];
-                }
-                neighborPos = position + new Vector2Int(-1, -1);
-                if(neighborPos.x >= 0 && neighborPos.y > 0 && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
-                    yield return pathFinder[neighborPos];
-                }
-                neighborPos = position + new Vector2Int(0, -1);
-                if(neighborPos.y >= 0 && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
-                    yield return pathFinder[neighborPos];
-                }
-                neighborPos = position + new Vector2Int(1, -1);
-                if(neighborPos.x < pathFinder.Width && position.y >= 0 && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
-                    yield return pathFinder[neighborPos];
+                foreach(var i in Ancestor != null
+                    ? GridIterator.Chebyshev(((Node)Ancestor).position, position, ((Node)goalNode).position)
+                    : GridIterator.Chebyshev(position, ((Node)goalNode).position)) {
+                    if(0 <= i.x && i.x < pathFinder.Width && 0 <= i.y && i.y < pathFinder.Height && pathFinder.Grid[i.y, i.x] < short.MaxValue) {
+                        yield return pathFinder[i];
+                    }
                 }
             }
         }

@@ -4,14 +4,13 @@ using UnityEngine;
 
 namespace SAMtak.AStar.Tests
 {
-    public class MockManhattanChebyshevHybridPathFinder : PathFinder<int>
+    public class MockManhattanPathFinderAlwaysConsiderGoal : PathFinder<int>
     {
         public int Width { get; private set; }
         public int Height => _nodes.Length / Width;
         public short[,] Grid { get; private set; }
-        public bool IsDiagonal { get; private set; }
 
-        public MockManhattanChebyshevHybridPathFinder(short[,] grid, int bufferReserveSize = 256) : base(bufferReserveSize)
+        public MockManhattanPathFinderAlwaysConsiderGoal(short[,] grid, int bufferReserveSize = 256) : base(bufferReserveSize)
         {
             var size = new Vector2Int(grid.GetLength(1), grid.GetLength(0));
             Grid = grid;
@@ -28,9 +27,8 @@ namespace SAMtak.AStar.Tests
             }
         }
 
-        public Vector2Int[] FindPath(Vector2Int start, Vector2Int goal, bool isDiagonal)
+        public Vector2Int[] FindPath(Vector2Int start, Vector2Int goal)
         {
-            IsDiagonal = isDiagonal;
             return FindPath(this[start], this[goal]).Select(x => ((Node)x).position).ToArray();
         }
 
@@ -50,27 +48,11 @@ namespace SAMtak.AStar.Tests
 
         public class Node : Vector2IntNode
         {
-            public MockManhattanChebyshevHybridPathFinder pathFinder;
-
-            public override int EstimateCostTo(INode other)
-            {
-                if(pathFinder.IsDiagonal) {
-                    return base.EstimateCostTo(other);
-                }
-                else {
-                    return Distance.Chebyshev(position, ((Node)other).position) + other.GraphCost;
-                }
-            }
+            public MockManhattanPathFinderAlwaysConsiderGoal pathFinder;
 
             public override IEnumerable<INode> GetNeighbors(INode goalNode)
             {
-                foreach(var i in Ancestor != null
-                    ? pathFinder.IsDiagonal
-                        ? GridIterator.Manhattan(((Node)Ancestor).position, position, ((Node)goalNode).position)
-                        : GridIterator.Chebyshev(((Node)Ancestor).position, position, ((Node)goalNode).position)
-                    : pathFinder.IsDiagonal
-                        ? GridIterator.Manhattan(position, ((Node)goalNode).position)
-                        : GridIterator.Chebyshev(position, ((Node)goalNode).position)) {
+                foreach(var i in GridIterator.Manhattan(position, ((Node)goalNode).position)) {
                     if(0 <= i.x && i.x < pathFinder.Width && 0 <= i.y && i.y < pathFinder.Height && pathFinder.Grid[i.y, i.x] < short.MaxValue) {
                         yield return pathFinder[i];
                     }

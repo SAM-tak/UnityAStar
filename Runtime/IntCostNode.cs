@@ -35,7 +35,7 @@ namespace SAMtak.AStar
             Ancestor = null;
         }
 
-        public abstract IEnumerable<INode> GetNeighbors();
+        public abstract IEnumerable<INode> GetNeighbors(INode goalNode);
 
         public abstract int EstimateCostTo(INode other);
     }

@@ -6,49 +6,7 @@ namespace SAMtak.AStar.Tests
 {
     public static class Helper
     {
-        const char ClosedCharacter = '#';
-
-        public static void AppendGridString(StringBuilder sb, short[,] grid, bool appendSpace = true)
-        {
-            for(var row = 0; row < grid.GetLength(0); row++) {
-                for(var column = 0; column < grid.GetLength(1); column++) {
-                    var value = grid[row, column];
-                    if(value == short.MaxValue) sb.Append(ClosedCharacter);
-                    else sb.Append(value);
-                    if(appendSpace) {
-                        sb.Append(' ');
-                    }
-                }
-                sb.AppendLine();
-            }
-        }
-
-        public static void AppendPathString(StringBuilder sb, short[,] grid, Vector2Int[] path)
-        {
-            for(var row = 0; row < grid.GetLength(0); row++) {
-                for(var column = 0; column < grid.GetLength(1); column++) {
-                    if(path.Any(n => n.y == row && n.x == column)) {
-                        sb.Append("*");
-                    }
-                    else {
-                        var value = grid[row, column];
-                        if(value == short.MaxValue) sb.Append(ClosedCharacter);
-                        else sb.Append(value);
-                    }
-                    sb.Append(' ');
-                }
-                sb.AppendLine();
-            }
-        }
-
-        public static void AppendAssertionsString(StringBuilder sb, Vector2Int[] path)
-        {
-            sb.AppendLine("Assert.That(path, Is.EquivalentTo(new[] {");
-            foreach(var position in path) {
-                sb.AppendLine($"\tnew Vector2Int({position.x}, {position.y}),");
-            }
-            sb.AppendLine("}));");
-        }
+        public const char ClosedCharacter = '#';
 
         public static void Print(short[,] grid, Vector2Int[] path)
         {
@@ -56,8 +14,8 @@ namespace SAMtak.AStar.Tests
             AppendGridString(sb, grid);
             sb.AppendLine();
             AppendPathString(sb, grid, path);
-            sb.AppendLine();
-            AppendAssertionsString(sb, path);
+            // sb.AppendLine();
+            // AppendAssertionsString(sb, path);
             Debug.Log(sb.ToString());
         }
 
@@ -84,6 +42,48 @@ namespace SAMtak.AStar.Tests
             }
 
             return grid;
+        }
+
+        static void AppendGridString(StringBuilder sb, short[,] grid, bool appendSpace = true)
+        {
+            for(var row = 0; row < grid.GetLength(0); row++) {
+                for(var column = 0; column < grid.GetLength(1); column++) {
+                    var value = grid[row, column];
+                    if(value == short.MaxValue) sb.Append(ClosedCharacter);
+                    else sb.Append(value);
+                    if(appendSpace) {
+                        sb.Append(' ');
+                    }
+                }
+                sb.AppendLine();
+            }
+        }
+
+        static void AppendPathString(StringBuilder sb, short[,] grid, Vector2Int[] path)
+        {
+            for(var row = 0; row < grid.GetLength(0); row++) {
+                for(var column = 0; column < grid.GetLength(1); column++) {
+                    if(path.Any(n => n.y == row && n.x == column)) {
+                        sb.Append("*");
+                    }
+                    else {
+                        var value = grid[row, column];
+                        if(value == short.MaxValue) sb.Append(ClosedCharacter);
+                        else sb.Append(value);
+                    }
+                    sb.Append(' ');
+                }
+                sb.AppendLine();
+            }
+        }
+
+        static void AppendAssertionsString(StringBuilder sb, Vector2Int[] path)
+        {
+            sb.AppendLine("Assert.That(path, Is.EquivalentTo(new[] {");
+            foreach(var position in path) {
+                sb.AppendLine($"\tnew Vector2Int({position.x}, {position.y}),");
+            }
+            sb.AppendLine("}));");
         }
     }
 }

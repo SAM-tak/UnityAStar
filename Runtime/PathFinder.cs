@@ -30,7 +30,7 @@ namespace SAMtak.AStar
             /// Enumerate neighbor nodes
             /// </summary>
             /// <returns>The neighbors</returns>
-            IEnumerable<INode> GetNeighbors();
+            IEnumerable<INode> GetNeighbors(INode goalNode);
             /// <summary>
             /// Estimate cost for other
             /// </summary>
@@ -128,7 +128,7 @@ namespace SAMtak.AStar
                     return _openList.AsEnumerable().Reverse();
                 }
 
-                foreach(var neighbor in currentNode.GetNeighbors()) {
+                foreach(var neighbor in currentNode.GetNeighbors(goalNode)) {
                     if(_closedList.Contains(neighbor)) {
                         continue;
                     }

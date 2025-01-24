@@ -25,7 +25,7 @@ namespace SAMtak.AStar.Tests
 
             var path = pathfinder.FindPath(new Vector2Int(1, 1), new Vector2Int(3, 2));
 
-            // Helper.Print(_grid, path);
+            Helper.Print(_grid, path);
 
             Assert.That(path, Is.EquivalentTo(new[] {
                 new Vector2Int(1, 1),
@@ -42,7 +42,7 @@ namespace SAMtak.AStar.Tests
 
             var path = pathfinder.FindPath(new Vector2Int(1, 1), new Vector2Int(5, 1));
 
-            // Helper.Print(_grid, path);
+            Helper.Print(_grid, path);
 
             Assert.That(path, Is.EquivalentTo(new[] {
                 new Vector2Int(1, 1),
@@ -62,11 +62,11 @@ namespace SAMtak.AStar.Tests
 
             var path = pathfinder.FindPath(new Vector2Int(1, 1), new Vector2Int(3, 2));
 
-            // Helper.Print(_grid, path);
+            Helper.Print(_grid, path);
 
             Assert.That(path, Is.EquivalentTo(new[] {
                 new Vector2Int(1, 1),
-                new Vector2Int(2, 1),
+                new Vector2Int(2, 2),
                 new Vector2Int(3, 2),
             }));
         }
@@ -78,7 +78,7 @@ namespace SAMtak.AStar.Tests
 
             var path = pathfinder.FindPath(new Vector2Int(1, 1), new Vector2Int(5, 1));
 
-            // Helper.Print(_grid, path);
+            Helper.Print(_grid, path);
 
             Assert.That(path, Is.EquivalentTo(new[] {
                 new Vector2Int(1, 1),
@@ -96,11 +96,11 @@ namespace SAMtak.AStar.Tests
 
             var path = pathfinder.FindPath(new Vector2Int(1, 1), new Vector2Int(3, 2));
 
-            // Helper.Print(_grid, path);
+            Helper.Print(_grid, path);
 
             Assert.That(path, Is.EquivalentTo(new[] {
                 new Vector2Int(1, 1),
-                new Vector2Int(2, 1),
+                new Vector2Int(2, 2),
                 new Vector2Int(3, 2),
             }));
         }
@@ -112,7 +112,7 @@ namespace SAMtak.AStar.Tests
 
             var path = pathfinder.FindPath(new Vector2Int(1, 1), new Vector2Int(5, 1));
 
-            // Helper.Print(_grid, path);
+            Helper.Print(_grid, path);
 
             Assert.That(path, Is.EquivalentTo(new[] {
                 new Vector2Int(1, 1),
@@ -130,7 +130,7 @@ namespace SAMtak.AStar.Tests
 
             var path = pathfinder.FindPath(new Vector2Int(1, 1), new Vector2Int(3, 2), true);
 
-            // Helper.Print(_grid, path);
+            Helper.Print(_grid, path);
 
             Assert.That(path, Is.EquivalentTo(new[] {
                 new Vector2Int(1, 1),
@@ -147,7 +147,7 @@ namespace SAMtak.AStar.Tests
 
             var path = pathfinder.FindPath(new Vector2Int(1, 1), new Vector2Int(5, 1), true);
 
-            // Helper.Print(_grid, path);
+            Helper.Print(_grid, path);
 
             Assert.That(path, Is.EquivalentTo(new[] {
                 new Vector2Int(1, 1),
@@ -167,11 +167,11 @@ namespace SAMtak.AStar.Tests
 
             var path = pathfinder.FindPath(new Vector2Int(1, 1), new Vector2Int(3, 2), false);
 
-            // Helper.Print(_grid, path);
+            Helper.Print(_grid, path);
 
             Assert.That(path, Is.EquivalentTo(new[] {
                 new Vector2Int(1, 1),
-                new Vector2Int(2, 1),
+                new Vector2Int(2, 2),
                 new Vector2Int(3, 2),
             }));
         }
@@ -183,7 +183,7 @@ namespace SAMtak.AStar.Tests
 
             var path = pathfinder.FindPath(new Vector2Int(1, 1), new Vector2Int(5, 1), false);
 
-            // Helper.Print(_grid, path);
+            Helper.Print(_grid, path);
 
             Assert.That(path, Is.EquivalentTo(new[] {
                 new Vector2Int(1, 1),

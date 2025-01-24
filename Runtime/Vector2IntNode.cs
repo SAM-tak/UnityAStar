@@ -13,6 +13,6 @@ namespace SAMtak.AStar
 
         public override int GetHashCode() => position.GetHashCode();
 
-        public override int EstimateCostTo(INode other) => Distance.Manhattan(position, ((Vector2IntNode)other).position);
+        public override int EstimateCostTo(INode other) => Distance.Manhattan(position, ((Vector2IntNode)other).position) + other.GraphCost;
     }
 }

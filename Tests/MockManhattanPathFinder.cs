@@ -50,29 +50,14 @@ namespace SAMtak.AStar.Tests
         {
             public MockManhattanPathFinder pathFinder;
 
-            public override int EstimateCostTo(INode other)
+            public override IEnumerable<INode> GetNeighbors(INode goalNode)
             {
-                var otherPosition = ((Node)other).position;
-                return base.EstimateCostTo(other) + pathFinder.Grid[otherPosition.y, otherPosition.x];
-            }
-
-            public override IEnumerable<INode> GetNeighbors()
-            {
-                var neighborPos = position + new Vector2Int(1, 0);
-                if(neighborPos.x < pathFinder.Width && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
-                    yield return pathFinder[neighborPos];
-                }
-                neighborPos = position + new Vector2Int(0, 1);
-                if(neighborPos.y < pathFinder.Height && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
-                    yield return pathFinder[neighborPos];
-                }
-                neighborPos = position + new Vector2Int(0, -1);
-                if(neighborPos.y > 0 && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
-                    yield return pathFinder[neighborPos];
-                }
-                neighborPos = position + new Vector2Int(-1, 0);
-                if(neighborPos.x > 0 && pathFinder.Grid[neighborPos.y, neighborPos.x] < short.MaxValue) {
-                    yield return pathFinder[neighborPos];
+                foreach(var i in Ancestor != null
+                    ? GridIterator.Manhattan(((Node)Ancestor).position, position, ((Node)goalNode).position)
+                    : GridIterator.Manhattan(position, ((Node)goalNode).position)) {
+                    if(0 <= i.x && i.x < pathFinder.Width && 0 <= i.y && i.y < pathFinder.Height && pathFinder.Grid[i.y, i.x] < short.MaxValue) {
+                        yield return pathFinder[i];
+                    }
                 }
             }
         }
