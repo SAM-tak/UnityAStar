@@ -4,7 +4,7 @@ using UnityEngine;
 namespace SAMtak.AStar
 {
     /// <summary>
-    /// Distance functions
+    /// Enumerator order by direction
     /// </summary>
     public static class GridIterator
     {
