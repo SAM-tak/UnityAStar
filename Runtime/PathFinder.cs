@@ -102,18 +102,6 @@ namespace SAMtak.AStar
             /// </returns>
             T EstimateCostTo(INode other);
             /// <summary>
-            /// Condition for choose current node.
-            /// </summary>
-            /// <param name="other">comparee node</param>
-            /// <returns>
-            /// Returns true if FinalCost less than other.<br/>
-            /// If FinalCost is same, returns true if HeuristicCost less than other.<br/>
-            /// Otherwise returns false.
-            /// </returns>
-            /// <see cref="IntCostNode"/>
-            /// <see cref="FloatCostNode"/>
-            bool IsCostLessThan(INode other);
-            /// <summary>
             /// Condition for update neighbor's graph cost.
             /// </summary>
             /// <param name="neighbor">neighbor node</param>
@@ -168,14 +156,7 @@ namespace SAMtak.AStar
             _openList.Add(startNode);
 
             while(_openList.Count > 0) {
-                var currentNode = _openList.First();
-
-                foreach(var node in _openList.Skip(1)) {
-                    if(node.IsCostLessThan(currentNode)) {
-                        currentNode = node;
-                    }
-                }
-
+                var currentNode = _openList.OrderBy(x => x.HeuristicCost).OrderBy(x => x.FinalCost).First();
                 _openList.Remove(currentNode);
                 _closedList.Add(currentNode);
 

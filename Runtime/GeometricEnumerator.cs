@@ -7,7 +7,7 @@ namespace SAMtak.AStar
     /// <summary>
     /// Enumerator order by direction
     /// </summary>
-    public static class GeometricIterator
+    public static class GeometricEnumerator
     {
         /// <summary>
         /// Enumerate oreder by goal direction.
@@ -37,7 +37,7 @@ namespace SAMtak.AStar
 
         static IEnumerable<Vector2> Enumerate(Vector2 current, IEnumerable<Vector2> neighbors, Vector2 direction)
         {
-            foreach(var i in neighbors.OrderBy(x => Vector2.Dot((x - current).normalized, direction))) {
+            foreach(var i in neighbors.OrderByDescending(x => Vector2.Dot((x - current).normalized, direction))) {
                 yield return i;
             }
         }
@@ -70,7 +70,7 @@ namespace SAMtak.AStar
 
         static IEnumerable<Vector3> Enumerate(Vector3 current, IEnumerable<Vector3> neighbors, Vector3 direction)
         {
-            foreach(var i in neighbors.OrderBy(x => Vector3.Dot((x - current).normalized, direction))) {
+            foreach(var i in neighbors.OrderByDescending(x => Vector3.Dot((x - current).normalized, direction))) {
                 yield return i;
             }
         }

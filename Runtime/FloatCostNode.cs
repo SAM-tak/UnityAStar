@@ -15,12 +15,6 @@ namespace SAMtak.AStar
         public INode Ancestor { get; set; }
 
         /// <inheritdoc/>
-        public bool IsCostLessThan(INode other)
-        {
-            return FinalCost < other.FinalCost || (FinalCost == other.FinalCost && HeuristicCost < other.HeuristicCost);
-        }
-
-        /// <inheritdoc/>
         public bool IsMovementCostLessThanNeighborsGraphCost(INode neighbor, out float movementCost)
         {
             movementCost = GraphCost + EstimateCostTo(neighbor);

@@ -64,13 +64,9 @@ namespace SAMtak.AStar.Tests
 
             public override IEnumerable<INode> GetNeighbors(INode goalNode)
             {
-                foreach(var i in Ancestor != null
-                    ? pathFinder.IsDiagonal
-                        ? GridIterator.Manhattan(((Node)Ancestor).position, position, ((Node)goalNode).position)
-                        : GridIterator.Chebyshev(((Node)Ancestor).position, position, ((Node)goalNode).position)
-                    : pathFinder.IsDiagonal
-                        ? GridIterator.Manhattan(position, ((Node)goalNode).position)
-                        : GridIterator.Chebyshev(position, ((Node)goalNode).position)) {
+                foreach(var i in pathFinder.IsDiagonal
+                    ? GridEnumerator.OneManhattan(((Node)Ancestor)?.position ?? position, position, ((Node)goalNode).position)
+                    : GridEnumerator.OneChebyshev(((Node)Ancestor)?.position ?? position, position, ((Node)goalNode).position)) {
                     if(0 <= i.x && i.x < pathFinder.Width && 0 <= i.y && i.y < pathFinder.Height && pathFinder.Grid[i.y, i.x] < short.MaxValue) {
                         yield return pathFinder[i];
                     }
