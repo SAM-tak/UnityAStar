@@ -97,9 +97,17 @@ namespace SAMtak.AStar
             /// </summary>
             /// <param name="other">target node for calculate cost</param>
             /// <returns>
-            /// The estimated cost.</br>
+            /// The estimated cost.<br/>
             /// Typically, returns a distance of self node to other node.
             /// </returns>
+            /// <see cref="Vector2IntNode"/>
+            /// <see cref="Vector2IntChebyshevNode"/>
+            /// <see cref="Vector2IntEuclidNode"/>
+            /// <see cref="Vector2Node"/>
+            /// <see cref="Vector3IntNode"/>
+            /// <see cref="Vector3IntChebyshevNode"/>
+            /// <see cref="Vector3IntEuclidNode"/>
+            /// <see cref="Vector3Node"/>
             T EstimateCostTo(INode other);
             /// <summary>
             /// Condition for update neighbor's graph cost.
@@ -117,7 +125,6 @@ namespace SAMtak.AStar
             /// Initialize node state.<br/>
             /// GraphCost set to initialCost, HeuristicCost set to Zero and Ancestor set to null.
             /// </summary>
-            /// <param name="initialCost">Initial graph cost</param>
             void Reset();
         }
 
