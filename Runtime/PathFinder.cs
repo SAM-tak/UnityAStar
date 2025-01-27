@@ -170,7 +170,7 @@ namespace SAMtak.AStar
             while(_openList.Count > 0) {
                 var currentNode = _openList.First();
 
-                foreach(var node in _openList) {
+                foreach(var node in _openList.Skip(1)) {
                     if(node.IsCostLessThan(currentNode)) {
                         currentNode = node;
                     }
