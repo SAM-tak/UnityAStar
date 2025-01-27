@@ -80,7 +80,7 @@ public class MyPathFinder : PathFinder<int> // A* algorithm path finder with int
         // returns neighbors from node graph. in this case, node graph was presented with 2D array.
         public override IEnumerable<INode> GetNeighbors(INode goalNode)
         {
-            foreach(var i in GridIterator.Manhattan(position, ((Node)goalNode).position)) {
+            foreach(var i in GridIterator.OneManhattan(((Node)Ancestor)?.position ?? position, position, ((Node)goalNode).position)) {
                 if(0 <= i.x && i.x < pathFinder.Width && 0 <= i.y && i.y < pathFinder.Height && pathFinder.Grid[i.y, i.x] < short.MaxValue) {
                     yield return pathFinder[i];
                 }
