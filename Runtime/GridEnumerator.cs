@@ -75,7 +75,7 @@ namespace SAMtak.AStar
         /// <summary>
         /// Enumerate six direction
         /// </summary>
-        /// <param name="previous">ancestor node position</param>
+        /// <param name="previous">ancestor node position. if ancestor not exists, set current position.</param>
         /// <param name="current">current position</param>
         /// <param name="goal">goal position</param>
         /// <returns>Enumerator for six direction</returns>
@@ -97,6 +97,7 @@ namespace SAMtak.AStar
         /// <summary>
         /// Enumerate fourteen direction
         /// </summary>
+        /// <param name="previous">ancestor node position. if ancestor not exists, set current position.</param>
         /// <param name="current">current position</param>
         /// <param name="goal">goal position</param>
         /// <returns>Enumerator for fourteen direction</returns>
