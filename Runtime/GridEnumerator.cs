@@ -20,9 +20,7 @@ namespace SAMtak.AStar
         {
             static Vector2Int Clamp(Vector2Int v) => v.x > v.y ? new(v.x < 0 ? -1 : 1, 0) : new(0, v.y < 0 ? -1 : 1);
 
-            var direction = current - previous;
-            if(direction == Vector2Int.zero) direction = Clamp(goal - current);
-            else direction = Clamp(direction);
+            var direction = current != previous ? Clamp(current - previous) : Clamp(goal - current);
             yield return current + direction;
 
             var perpendicular = Perpendicular(direction, (Vector2)goal - current);
@@ -43,9 +41,7 @@ namespace SAMtak.AStar
         {
             static Vector2Int Clamp(Vector2Int v) => new(v.x > 0 ? 1 : v.x < 0 ? -1 : 0, v.y > 0 ? 1 : v.y < 0 ? -1 : 0);
 
-            var direction = current - previous;
-            if(direction == Vector2Int.zero) direction = Clamp(goal - current);
-            else direction = Clamp(direction);
+            var direction = current != previous ? Clamp(current - previous) : Clamp(goal - current);
             yield return current + direction;
 
             var perpendicular = Perpendicular(direction, (Vector2)goal - current);
