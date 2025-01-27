@@ -46,14 +46,11 @@ namespace SAMtak.AStar.Tests
             }
         }
 
-        public class Node : IntCostNode
+        public class Node : Vector2IntChebyshevNode
         {
             public MockChebyshevPathFinder pathFinder;
-            public Vector2Int position;
 
-            public override int GetHashCode() => position.GetHashCode();
-
-            public override int EstimateCostTo(INode other) => Distance.Chebyshev(position, ((Node)other).position) + pathFinder.Grid[position.y, position.x];
+            public override int EstimateCostTo(INode other) => base.EstimateCostTo(other) + pathFinder.Grid[position.y, position.x];
 
             public override IEnumerable<INode> GetNeighbors(INode goalNode)
             {
