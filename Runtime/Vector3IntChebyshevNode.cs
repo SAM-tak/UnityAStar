@@ -3,7 +3,7 @@ namespace SAMtak.AStar
     using INode = PathFinder<int>.INode;
 
     /// <summary>
-    /// FloatCostNode for Vector2Int with euclid distance
+    /// FloatCostNode for Vector2Int with chebyshev distance
     /// </summary>
     public abstract class Vector3IntChebyshevNode : Vector3IntNode
     {

@@ -10,67 +10,29 @@ namespace SAMtak.AStar
     public static class GeometricEnumerator
     {
         /// <summary>
-        /// Enumerate oreder by goal direction.
+        /// Enumerate neighbors oreder by direction direction.
         /// </summary>
         /// <param name="current">Current position</param>
-        /// <param name="goal">The goal position</param>
         /// <param name="neighbors">Neighbor nodes</param>
+        /// <param name="direction">Base vector for sort</param>
         /// <returns>Sorted neighbors</returns>
-        public static IEnumerable<Vector2> ConsiderGoal(Vector2 current, Vector2 goal, IEnumerable<Vector2> neighbors)
+        public static IEnumerable<IVector2Position> Enumerate(Vector2 current, IEnumerable<IVector2Position> neighbors, Vector2 direction)
         {
-            var direction = (goal - current).normalized;
-            return Enumerate(current, neighbors, direction);
-        }
-
-        /// <summary>
-        /// Enumerate neighbors oreder by current direction direction.
-        /// </summary>
-        /// <param name="previous">Previous position</param>
-        /// <param name="current">Current position</param>
-        /// <param name="neighbors">Neighbor nodes</param>
-        /// <returns>Sorted neighbors</returns>
-        public static IEnumerable<Vector2> ConsiderCurrentDirection(Vector2 previous, Vector2 current, IEnumerable<Vector2> neighbors)
-        {
-            var direction = (current - previous).normalized;
-            return Enumerate(current, neighbors, direction);
-        }
-
-        static IEnumerable<Vector2> Enumerate(Vector2 current, IEnumerable<Vector2> neighbors, Vector2 direction)
-        {
-            foreach(var i in neighbors.OrderByDescending(x => Vector2.Dot((x - current).normalized, direction))) {
+            foreach(var i in neighbors.OrderByDescending(x => Vector2.Dot((x.Position - current).normalized, direction))) {
                 yield return i;
             }
         }
 
         /// <summary>
-        /// Enumerate oreder by goal direction.
+        /// Enumerate neighbors oreder by direction direction.
         /// </summary>
         /// <param name="current">Current position</param>
-        /// <param name="goal">The goal position</param>
         /// <param name="neighbors">Neighbor nodes</param>
+        /// <param name="direction">Base vector for sort</param>
         /// <returns>Sorted neighbors</returns>
-        public static IEnumerable<Vector3> ConsiderGoal(Vector3 current, Vector3 goal, IEnumerable<Vector3> neighbors)
+        public static IEnumerable<IVector3Position> Enumerate(Vector3 current, IEnumerable<IVector3Position> neighbors, Vector3 direction)
         {
-            var direction = (goal - current).normalized;
-            return Enumerate(current, neighbors, direction);
-        }
-
-        /// <summary>
-        /// Enumerate neighbors oreder by current direction direction.
-        /// </summary>
-        /// <param name="previous">Previous position</param>
-        /// <param name="current">Current position</param>
-        /// <param name="neighbors">Neighbor nodes</param>
-        /// <returns>Sorted neighbors</returns>
-        public static IEnumerable<Vector3> ConsiderCurrentDirection(Vector3 previous, Vector3 current, IEnumerable<Vector3> neighbors)
-        {
-            var direction = (current - previous).normalized;
-            return Enumerate(current, neighbors, direction);
-        }
-
-        static IEnumerable<Vector3> Enumerate(Vector3 current, IEnumerable<Vector3> neighbors, Vector3 direction)
-        {
-            foreach(var i in neighbors.OrderByDescending(x => Vector3.Dot((x - current).normalized, direction))) {
+            foreach(var i in neighbors.OrderByDescending(x => Vector3.Dot((x.Position - current).normalized, direction))) {
                 yield return i;
             }
         }
